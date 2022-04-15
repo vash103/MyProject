@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Show Contact</title>
+</head>
+<body>
+<section>
+<div class="card mr-3">
+<div class="card-body">
+<h1 class="text-center">Your Contacts</h1>
+
+<table class="table">
+  <thead class="bg-pr text-white">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="c: ${contact}">
+      <th th:text="${c.cid}"scope="row">1</th>
+      <td th:text="${c.cname}"></td>
+      <td>
+      <a href="#" th:href="@{'/user/contact/'+${c.cid}}">
+      <span th:text="${c.email}"></span></a>
+      </td>
+      <td th:text="${c.phone}"></td>
+      <td>
+      <a th:href="@{'/user/delete/'+${c.cid}}" class="btn btn-danger btn-sm">Delete</a>
+<form method="post" th:action="@{'/user/update-contact/'+${c.cid}}" class="mt-2">
+<button type="submit" class="btn btn-primary text-light btn-sm">Update</button>      
+    </form> 
+    </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</div>
+</section>
+</body>
+</html>
